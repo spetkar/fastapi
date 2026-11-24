@@ -50,16 +50,13 @@ def view_student(student_id:str = Path(..., description='Please enter ID of stud
         raise HTTPException(status_code=404, detail='Student not found, Please enter correct student id')
 
 
-
-
-
 @app.get("/sort")
 def sort_students(
     sort_by: str = Query(..., description="Sort on the basis of age etc."), 
     order_by: str = Query('asc', description="Sort in asc or desc order")):
 
     # all valid fields (integer or float)
-    valid_fields = ['age', ]
+    valid_fields = ['age','name']
 
     if sort_by not in valid_fields:
         raise HTTPException(status_code=400, detail=f"Invalid field select from {valid_fields}")
